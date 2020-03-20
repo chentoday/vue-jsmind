@@ -1,5 +1,7 @@
 <template>
+<div :style="{height}">
   <div id="jsmind_container"></div>
+</div>
 </template>
 
 <script>
@@ -14,6 +16,10 @@ export default {
     },
     options: {
       type: Object
+    },
+    height:{
+      type:String,
+      required:true
     }
   },
   mounted() {
@@ -55,7 +61,13 @@ export default {
     };
     options = Object.assign(options, this.options);
     var jm = new jsMind(options);
+    this.jm=jm
     jm.show(this.values);
+  },
+  data(){
+    return{
+      jm:{}
+    }
   }
 };
 </script>
