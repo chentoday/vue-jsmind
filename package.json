@@ -2,7 +2,7 @@
   "name": "vue-jsmind",
   "description": "A Vue.js project",
   "version": "1.0.0",
-  "author": "aJantes <906106844@qq.com>",
+  "author": "chentoday <906106844@qq.com>",
   "license": "MIT",
   "private": false,
   "main": "dist/build.js",

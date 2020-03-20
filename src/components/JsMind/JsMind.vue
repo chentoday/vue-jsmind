@@ -5,12 +5,7 @@
 <script>
 import jsMind from "jsmind";
 export default {
-  name: "vue-jsMind",
-  data() {
-    return {
-      msg: "Welcome to Your Vue.js App"
-    };
-  },
+  name: "jsMind",
   props: {
     values: {
       type: Object,
@@ -23,9 +18,9 @@ export default {
   mounted() {
     // 默认配置
     var options = {
-      container: "jsmind_container", 
+      container: "jsmind_container",
       editable: true, // 是否启用编辑
-      theme: 'primary', // 主题
+      theme: "primary", // 主题
       mode: "full", // 显示模式
       support_html: true, // 是否支持节点里的HTML元素
       view: {
@@ -53,7 +48,7 @@ export default {
           left: 37, // <Left>
           up: 38, // <Up>
           right: 39, // <Right>
-          down: 40 ,// <Down>
+          down: 40 // <Down>
         }
       }
     };
