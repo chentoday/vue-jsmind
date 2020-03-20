@@ -1,16 +1,12 @@
 <!-- 思维导图编辑器 -->
 <template>
   <div class="app">
-    <Mind :values="mind" :options="options"></Mind>
+    <js-mind :values="mind" :options="options"></js-mind>
   </div>
 </template>
 
 <script>
-import Mind from "./components/JsMind/JsMind";
 export default {
-  components: {
-    Mind
-  },
   data() {
     return {
       mind: {
@@ -57,8 +53,7 @@ export default {
           { id: "powerful3", parentid: "powerful", topic: "Depends on you" }
         ]
       },
-      options:{
-      }
+      options: {}
     };
   },
   computed: {},

@@ -4,6 +4,7 @@
 
 <script>
 import jsMind from "jsmind";
+import "jsmind/style/jsmind.css";
 export default {
   name: "jsMind",
   props: {
