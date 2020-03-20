@@ -13,7 +13,7 @@ export default {
         /* 元数据，定义思维导图的名称、作者、版本等信息 */
         meta: {
           name: "example",
-          author: "hizzgdev@163.com",
+          author: "906106844@qq.com",
           version: "0.2"
         },
         /* 数据格式声明 */
