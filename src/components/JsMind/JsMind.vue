@@ -5,8 +5,10 @@
 </template>
 
 <script>
-import jsMind from "jsmind";
-import "jsmind/style/jsmind.css";
+import  "./jsmind.js";
+import "./jsmind.css";
+import './jsmind.draggable.js'
+import './jsmind.screenshot.js'
 export default {
   name: "jsMind",
   props: {
@@ -60,9 +62,7 @@ export default {
       }
     };
     options = Object.assign(options, this.options);
-    var jm = new jsMind(options);
-    this.jm=jm
-    jm.show(this.values);
+    this.jm=window.jsMind.show(options,this.values)
   },
   data(){
     return{

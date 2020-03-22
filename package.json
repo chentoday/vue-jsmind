@@ -11,7 +11,6 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "jsmind": "^0.4.6",
     "vue": "^2.5.11"
   },
   "browserslist": [
