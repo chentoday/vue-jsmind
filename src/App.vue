@@ -101,8 +101,7 @@ export default {
           { id: "powerful3", parentid: "powerful", topic: "Depends on you" }
         ]
       },
-      options: {},
-      mian:{}
+      options: {}
     };
   },
   mounted() {

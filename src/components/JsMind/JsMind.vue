@@ -66,6 +66,7 @@ export default {
     };
     options = Object.assign(options, this.options);
     this.jm=window.jsMind.show(options,this.values)
+    console.log('vue-jsmind',this.jm)
   },
   data(){
     return{
