@@ -1,6 +1,9 @@
 <template>
 <div :style="{height}">
   <div id="jsmind_container"></div>
+  <div style="display:none">
+      <input class="file" type="file" id="image-chooser" accept="image/*"/>
+    </div>
 </div>
 </template>
 
