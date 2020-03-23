@@ -7,6 +7,7 @@
       <button @click="onMoveDown">移动到最下方</button>
       <button @click="onRemoveNode">删除节点</button>
       <button @click="addImageNode">添加图片节点</button>
+      <button @click="addNode">添加节点</button>
     </div>
     <div>
       <span>打开：</span>
@@ -109,6 +110,14 @@ export default {
     this.jm.enable_edit()
   },
   methods:{
+    addNode(){
+      var selected_node = this.jm.get_selected_node(); // as parent of new node
+        if(!selected_node){alert('please select a node first.');return;}
+
+        var nodeid = jsMind.util.uuid.newid();
+        var topic = 'new Node';
+        var node = this.jm.add_node(selected_node, nodeid, topic);
+    },
     onMoveUp(){
       var selected_id =this.jm.get_selected_node()
         if(!selected_id){alert('please select a node first.');return;}
