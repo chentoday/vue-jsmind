@@ -1,6 +1,6 @@
 <template>
-<div :style="{height}">
-  <div id="jsmind_container"></div>
+<div :key='refresh' :style="{height}">
+  <div id="jsmind_container" ></div>
   <div style="display:none">
       <input class="file" type="file" id="image-chooser" accept="image/*"/>
     </div>
@@ -28,8 +28,15 @@ export default {
     }
   },
   mounted() {
-    // 默认配置
-    var options = {
+    this.init()
+  },
+  data(){
+    return{
+      jm:{},
+      refresh:1,
+      value:{},
+       // 默认配置
+      default_options : {
       container: "jsmind_container",
       editable: true, // 是否启用编辑
       theme: "primary", // 主题
@@ -49,7 +56,11 @@ export default {
       },
       shortcut: {
         enable: true, // 是否启用快捷键
-        handles: {}, // 命名的快捷键事件处理器
+        handles: {
+          SavePNG(){
+            this.jm.screenshot.shootDownload();
+          }
+        }, // 命名的快捷键事件处理器
         mapping: {
           // 快捷键映射
           addchild: 45, // <Insert>
@@ -60,17 +71,32 @@ export default {
           left: 37, // <Left>
           up: 38, // <Up>
           right: 39, // <Right>
-          down: 40 // <Down>
+          down: 40 ,// <Down>
+          SavePNG:jsMind.key.ctrl + 83
         }
       }
-    };
-    options = Object.assign(options, this.options);
-    this.jm=window.jsMind.show(options,this.values)
-    console.log('vue-jsmind',this.jm)
+    }
+    }
   },
-  data(){
-    return{
-      jm:{}
+  updated(){
+    this.init()
+  },
+  watch:{
+    options(){
+     this.$nextTick(()=>{
+      this.refresh++
+     })
+    }
+  },
+  methods:{
+    init(){
+      if(this.jm.get_data){
+        this.value=this.jm.get_data()
+      }else{
+        this.value=this.values
+      }
+      const options = Object.assign(this.default_options, this.options);
+      this.jm=window.jsMind.show(options,this.value)
     }
   }
 };

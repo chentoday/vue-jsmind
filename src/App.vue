@@ -48,6 +48,11 @@
       <button @click='zoomOut' ref="zoomOut">升高</button>
       <button @click='zoomIn' ref="zoomIn">降低</button>
     </div>
+    <div>
+      <span>选项：</span>
+      <button @click='changeOption'>改变布局方向</button>
+      设置快捷键添加子项<input @keyup="shortcutSet" :value="shortCutVal" onpaste = "return false"/>
+    </div>
     <js-mind :values="mind" :options="options" ref="jsMind" height="1000px"></js-mind>
   </div>
 </template>
@@ -101,7 +106,11 @@ export default {
           { id: "powerful3", parentid: "powerful", topic: "Depends on you" }
         ]
       },
-      options: {}
+      options: {
+        // mode:'side'
+      },
+      shortCutVal:'',
+      keyCode:''
     };
   },
   mounted() {
@@ -230,7 +239,7 @@ export default {
       }
     },
     screenshot(){
-       this.jm.screenshot.shootDownload();
+      this.jm.screenshot.shootDownload();
     },
     // 获取选中标签的 ID
     get_selected_nodeid(){
@@ -241,7 +250,34 @@ export default {
             return null;
         }
     },
-
+    changeOption(){
+      this.options={
+        mode:'side'
+      }
+    },
+    // 只支持绑定单个按键
+    shortcutSet(value){
+      if(value.key==='Backspace'||value.key==='Delete'){
+        this.shortCutVal=this.shortCutVal.substring(0,this.shortCutVal.lastIndexOf('+'))
+        this.keyCode=this.keyCode.substring(0,this.keyCode.lastIndexOf('+'))
+        return
+      }
+      if(this.shortCutVal){
+        this.shortCutVal+=' + '
+        this.keyCode+='+'
+      }
+      this.shortCutVal+=value.key
+      this.keyCode+=value.keyCode
+      console.log('keyCode',this.keyCode)
+      this.options={
+        shortcut:{
+           mapping: {
+          // 快捷键映射
+            addchild: this.keyCode, 
+          }
+        }
+      }
+    }
   }
 }
 </script>
